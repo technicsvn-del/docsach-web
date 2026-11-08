@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Đọc Sách</title>
+<meta name="theme-color" content="#E9E7E0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Đọc Sách">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Tủ sách -->
+<main id="library">
+  <header class="lib-bar">
+    <h1>Tủ sách</h1>
+    <button id="btnSettings" class="icon" aria-label="Cài đặt">⚙</button>
+    <label class="icon" for="filePick" aria-label="Thêm sách">＋</label>
+    <input type="file" id="filePick" accept="application/pdf,.pdf" multiple hidden>
+  </header>
+  <input id="search" type="search" placeholder="Tìm sách" autocomplete="off">
+  <div id="empty" hidden>
+    <div class="empty-icon">📚</div>
+    <p><b>Chưa có sách</b></p>
+    <p>Bấm <b>＋</b> để chọn file PDF từ app Tệp, iCloud Drive…</p>
+    <label class="btn" for="filePick">Thêm sách</label>
+  </div>
+  <div id="grid"></div>
+  <p id="installHint" hidden>Mẹo: trong Safari bấm <b>Chia sẻ</b> → <b>Thêm vào MH chính</b> để dùng như app, đọc được cả khi không có mạng.</p>
+</main>
+
+<!-- Màn hình đọc -->
+<section id="reader" hidden>
+  <canvas id="pageCanvas"></canvas>
+  <div id="topBar" class="bar top">
+    <button id="btnBack" class="icon" aria-label="Quay lại">←</button>
+    <div id="bookTitle"></div>
+    <button id="btnMark" class="icon" aria-label="Đánh dấu trang">☆</button>
+    <button id="btnToc" class="icon" aria-label="Mục lục">☰</button>
+    <button id="btnAa" class="icon serif" aria-label="Cài đặt đọc">Aa</button>
+  </div>
+  <div id="bottomBar" class="bar bottom">
+    <input type="range" id="slider" min="0" max="0" value="0" step="1">
+    <div id="pageInfo"></div>
+  </div>
+  <div id="loading" hidden>Đang mở sách…</div>
+</section>
+
+<!-- Bảng trượt (cài đặt, mục lục, menu sách) -->
+<div id="sheet" hidden>
+  <div class="sheet-card">
+    <div class="sheet-head">
+      <b id="sheetTitle"></b>
+      <button id="sheetClose">Xong</button>
+    </div>
+    <div id="sheetBody"></div>
+  </div>
+</div>
+
+<div id="toast" hidden></div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
